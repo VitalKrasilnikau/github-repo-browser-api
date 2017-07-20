@@ -12,10 +12,14 @@ namespace V.GithubViewer.WebAPI
     {
         public static void Main(string[] args)
         {
+            var configurations = new ConfigurationBuilder()
+                .AddCommandLine(args)
+                .Build();
+
             var host = new WebHostBuilder()
+                .UseConfiguration(configurations)
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .Build();
 
