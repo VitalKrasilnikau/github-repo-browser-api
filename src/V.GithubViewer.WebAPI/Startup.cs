@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using V.GithubViewer.DAL.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace V.GithubViewer.WebAPI
 {
@@ -30,6 +32,8 @@ namespace V.GithubViewer.WebAPI
             // Add framework services.
             services.AddMvc();
             services.AddCors(x => x.AddPolicy("*", _ => _.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<RepoContext>(options => options.UseNpgsql("User ID=uubkfodbjbuxzq;Password=918527cd2bce2bf52d2d86a75d6f4cddde6594b19f4e3cd6c16ad7f1b59120a0;Server=ec2-107-22-251-55.compute-1.amazonaws.com;Port=5432;Database=d7d0bt0hhfglgg;Pooling=true;Persist Security Info=True;Trust Server Certificate=True;SSL Mode=Require"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
