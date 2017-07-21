@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace V.GithubViewer.WebAPI
 {
@@ -22,6 +23,7 @@ namespace V.GithubViewer.WebAPI
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseStartup<Startup>()
+                .ConfigureServices(x => x.AddSingleton<IConfigurationRoot>(configurations))
                 .Build();
 
             host.Run();

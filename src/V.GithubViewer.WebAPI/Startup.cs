@@ -14,8 +14,12 @@ namespace V.GithubViewer.WebAPI
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        private readonly IConfigurationRoot _rootConfiguration;
+
+        public Startup(IHostingEnvironment env, IConfigurationRoot rootConfiguration)
         {
+            _rootConfiguration = rootConfiguration;
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -26,17 +30,14 @@ namespace V.GithubViewer.WebAPI
 
         public IConfigurationRoot Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
             services.AddMvc();
             services.AddCors(x => x.AddPolicy("*", _ => _.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             services.AddEntityFrameworkNpgsql()
-                .AddDbContext<RepoContext>(options => options.UseNpgsql("User ID=uubkfodbjbuxzq;Password=918527cd2bce2bf52d2d86a75d6f4cddde6594b19f4e3cd6c16ad7f1b59120a0;Server=ec2-107-22-251-55.compute-1.amazonaws.com;Port=5432;Database=d7d0bt0hhfglgg;Pooling=true;Persist Security Info=True;Trust Server Certificate=True;SSL Mode=Require"));
+                .AddDbContext<RepoContext>(options => options.UseNpgsql(_rootConfiguration["db.connection.string"]));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
