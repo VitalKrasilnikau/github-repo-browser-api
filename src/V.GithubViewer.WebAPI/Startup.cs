@@ -36,6 +36,8 @@ namespace V.GithubViewer.WebAPI
             services.AddCors(x => x.AddPolicy("*", _ => _.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<RepoContext>(options => options.UseNpgsql(_rootConfiguration["db.connection.string"]));
+
+            services.AddSingleton<RedisRepository>(new RedisRepository(_rootConfiguration["redis.connection.string"]));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

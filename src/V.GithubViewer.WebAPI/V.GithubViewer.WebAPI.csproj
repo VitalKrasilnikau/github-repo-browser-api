@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" PrivateAssets="All" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="1.1.2" />
+    <PackageReference Include="ServiceStack.Redis.Core" Version="1.0.43" />
   </ItemGroup>
 
 </Project>
