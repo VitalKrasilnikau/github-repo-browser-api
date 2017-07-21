@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using V.GithubViewer.DAL.Repository;
 using V.GithubViewer.WebAPI.Model;
 
 namespace V.GithubViewer.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("*")]
     public class ViewController : Controller
     {
         private readonly RedisRepository _redisRepository;

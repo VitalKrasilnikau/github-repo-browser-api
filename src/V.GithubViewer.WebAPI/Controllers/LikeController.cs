@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using V.GithubViewer.DAL.Repository;
 using V.GithubViewer.WebAPI.Model;
@@ -9,6 +10,7 @@ using V.GithubViewer.WebAPI.Model;
 namespace V.GithubViewer.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [EnableCors("*")]
     public class LikeController : Controller
     {
         private readonly RedisRepository _redisRepository;
