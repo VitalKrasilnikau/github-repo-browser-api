@@ -13,9 +13,9 @@ namespace V.GithubViewer.WebAPI.Controllers
     [EnableCors("*")]
     public class LikeController : Controller
     {
-        private readonly RedisRepository _redisRepository;
+        private readonly IRedisRepository _redisRepository;
 
-        public LikeController(RedisRepository redisRepository)
+        public LikeController(IRedisRepository redisRepository)
         {
             _redisRepository = redisRepository;
         }

@@ -13,9 +13,9 @@ namespace V.GithubViewer.WebAPI.Controllers
     [EnableCors("*")]
     public class ViewController : Controller
     {
-        private readonly RedisRepository _redisRepository;
+        private readonly IRedisRepository _redisRepository;
 
-        public ViewController(RedisRepository redisRepository)
+        public ViewController(IRedisRepository redisRepository)
         {
             _redisRepository = redisRepository;
         }

@@ -2,7 +2,7 @@ using ServiceStack.Redis;
 
 namespace V.GithubViewer.DAL.Repository
 {
-    public class RedisRepository
+    public class RedisRepository : IRedisRepository
     {
         private readonly string _connectionString;
 
