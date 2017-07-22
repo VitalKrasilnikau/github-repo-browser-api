@@ -42,7 +42,7 @@ namespace V.GithubViewer.WebAPI
             services.AddSingleton<IRedisRepository>(
                 new RedisCachingRepository(
                     _rootConfiguration["redis.connection.string"],
-                    TimeSpan.FromSeconds(3), // Heroku free plan allowed request rate
+                    TimeSpan.FromSeconds(1),
                     _cancellationTokenSource.Token));
         }
 
